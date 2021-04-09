@@ -1,0 +1,19 @@
+The script 'publish.js' performs find and replace operations on the JavaScript
+files output by Adobe Animate 20.0.4 to enable these animations to work with the
+plea bargain simulation and to make asset customization possible.
+
+This repository should contain the most up-to-date version of 'publish.js' which
+is a dependency of the researcher console. Include this repository as a git
+submodule under 'server/common/' of the console.
+
+Originally, this was a pipeline of Bash scripts which were run on '*.js' files
+before manually packaging them into a simulation. At that time, the simulation
+code had to be modified heavily for each study. Later, the script was rewritten
+in Python, still to be run manually, but now compatible with structural changes
+made by Adobe to the JavaScript files exported by Animate. These scripts no
+longer generate the format required by the researcher console, which
+automatically runs 'publish.js' on each file upload and handles packaging the
+files with the simulation. For reference, these older scripts can be found under
+'archived/'.
+
+Last modified April 9, 2021.
