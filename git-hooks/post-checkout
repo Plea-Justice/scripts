@@ -1,0 +1,25 @@
+#!/bin/bash
+echo -e "\n----- post-checkout hook -----"
+
+branch=$(git rev-parse --abbrev-ref HEAD)
+root="$(git rev-parse --show-toplevel)/"
+
+client="${root}/client/.env"
+server="${root}/server/.env"
+
+mode="development"
+if [ branch = master ]
+    then
+        mode="production"
+fi
+
+# Client Variables
+echo "GIT_BRANCH=${branch}" > $client
+echo "MODE=${mode}" >> $client
+
+# Server Variables
+echo "RESEARCHER_DB=${branch}" > $server
+echo "MODE=${mode}" >> $server
+
+echo -e "\033[1m.env files have been updated.\033[0m Configure environment manually before running in production."
+echo -e "------------------------------"
